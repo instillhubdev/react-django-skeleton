@@ -4,7 +4,7 @@
   "description": "This is a skeleton made using React, Redux and Django",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack --mode development ./skeleton/frontend/src/index.js --output ./skeleton/frontend/static/frontend/main.js ",
+    "dev": "webpack --mode development --watch ./skeleton/frontend/src/index.js --output ./skeleton/frontend/static/frontend/main.js ",
     "build": "webpack --mode production ./skeleton/frontend/src/index.js --output ./skeleton/frontend/static/frontend/main.js "
   },
   "repository": {
