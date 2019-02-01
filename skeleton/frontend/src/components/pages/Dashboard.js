@@ -5,8 +5,8 @@ const Dashboard = () => {
   return (
     <Fragment>
       <h1>This is the Dashboard component</h1>
-      <AddPlayer />
       <Players />
+      <AddPlayer />
     </Fragment>
   );
 };

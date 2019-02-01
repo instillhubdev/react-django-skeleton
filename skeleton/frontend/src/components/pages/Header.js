@@ -19,7 +19,7 @@ export default class Header extends Component {
           <span className="navbar-toggler-icon" />
         </button>
 
-        <div classBane="collapse navbar-collapse" id="navbarSupportedContent">
+        <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav mr-auto">
 
           </ul>

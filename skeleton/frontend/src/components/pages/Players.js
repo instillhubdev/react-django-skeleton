@@ -1,11 +1,56 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { getPlayers } from "../../actions/players";
+class Players extends Component {
+  static propTypes = {
+    players: PropTypes.array.isRequired
+  };
 
-export default class Players extends Component {
+  componentDidMount() {
+    this.props.getPlayers();
+  }
+
   render() {
+    console.log(this.props.players);
     return (
-      <div>
-        <h1>Players Component</h1>
-      </div>
-    )
+      <Fragment>
+        <h2>Players</h2>
+        <table className="table table-striped">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Message</th>
+              <th />
+            </tr>
+          </thead>
+          <tbody>
+            {this.props.players.map(player => (
+              <tr key={player.id}>
+                <td>{player.id}</td>
+                <td>{player.name}</td>
+                <td>{player.email}</td>
+                <td>{player.message}</td>
+                <td>
+                  <button className="btn btn-danger btn-sm">Delete</button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </Fragment>
+    );
   }
 }
+
+const mapStateToProps = state => {
+  const { players } = state.players;
+  return { players };
+};
+const mapDispatchToProps = { getPlayers };
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Players);
