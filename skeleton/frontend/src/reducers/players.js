@@ -1,4 +1,4 @@
-import { GET_PLAYERS } from "../actions/types";
+import { GET_PLAYERS, DELETE_PLAYER } from "../actions/types";
 
 const INITIAL_STATE = {
   players: []
@@ -12,10 +12,14 @@ const INITIAL_STATE = {
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case GET_PLAYERS:
-      return {
-        ...state,
+      return Object.assign({}, state, {
         players: action.players
-      };
+      });
+    case DELETE_PLAYER:
+      return Object.assign({}, state, {
+        players: state.players.filter(player => player.id !== action.id)
+      });
+
     default:
       return state;
   }

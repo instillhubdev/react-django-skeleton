@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { getPlayers } from "../../actions/players";
+import { getPlayers, deletePlayer } from "../../actions/players";
 class Players extends Component {
   static propTypes = {
     players: PropTypes.array.isRequired
@@ -34,7 +34,12 @@ class Players extends Component {
                 <td>{player.email}</td>
                 <td>{player.message}</td>
                 <td>
-                  <button className="btn btn-danger btn-sm">Delete</button>
+                  <button
+                    className="btn btn-danger btn-sm"
+                    onClick={this.props.deletePlayer.bind(this, player.id)}
+                  >
+                    Delete
+                  </button>
                 </td>
               </tr>
             ))}
@@ -49,7 +54,7 @@ const mapStateToProps = state => {
   const { players } = state.players;
   return { players };
 };
-const mapDispatchToProps = { getPlayers };
+const mapDispatchToProps = { getPlayers, deletePlayer };
 export default connect(
   mapStateToProps,
   mapDispatchToProps
