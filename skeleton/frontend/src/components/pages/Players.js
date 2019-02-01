@@ -4,7 +4,9 @@ import { connect } from "react-redux";
 import { getPlayers, deletePlayer } from "../../actions/players";
 class Players extends Component {
   static propTypes = {
-    players: PropTypes.array.isRequired
+    players: PropTypes.array.isRequired,
+    getPlayers: PropTypes.func.isRequired,
+    deletePlayer: PropTypes.func.isRequired
   };
 
   componentDidMount() {
