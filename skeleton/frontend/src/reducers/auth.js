@@ -23,7 +23,7 @@ export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case LOADING_USER:
       return Object.assign({}, state, {
-        isLoading: action.isLoading
+        isLoading: true
       });
     case USER_LOADED:
       return Object.assign({}, state, {
