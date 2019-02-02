@@ -32,7 +32,7 @@ export default class Login extends Component {
           />
         </div>
         <div className="form-group">
-          <label for="inputPassword" className="sr-only">
+          <label htmlFor="inputPassword" className="sr-only">
             Password
           </label>
           <input

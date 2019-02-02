@@ -35,7 +35,7 @@ export default class Register extends Component {
           />
         </div>
         <div className="form-group">
-          <label for="inputEmail" className="sr-only">
+          <label htmlFor="inputEmail" className="sr-only">
             Email address
           </label>
           <input
@@ -49,7 +49,7 @@ export default class Register extends Component {
           />
         </div>
         <div className="form-group">
-          <label for="inputPassword" className="sr-only">
+          <label htmlFor="inputPassword" className="sr-only">
             Password
           </label>
           <input
@@ -63,7 +63,7 @@ export default class Register extends Component {
           />
         </div>
         <div className="form-group">
-          <label for="inputPassword" className="sr-only">
+          <label htmlFor="inputPassword" className="sr-only">
             Confirm Password
           </label>
           <input

@@ -10,6 +10,7 @@ import store from "../store";
 import AlertError from "../utils/AlertError";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
+import ProtectedRoute from "../common/ProtectedRoute";
 
 //Options for React Alert
 const alertOptions = {
@@ -30,9 +31,9 @@ class App extends React.Component {
               <AlertError />
               <div className="container">
                 <Switch>
-                  <Route exact path="/" component={Dashboard} />
+                  <ProtectedRoute exact path="/" component={Dashboard} />
                   <Route exact path="/register" component={Register} />
-                  <Route exactpath="/login" component={Login} />
+                  <Route exact path="/login" component={Login} />
                 </Switch>
               </div>
             </React.Fragment>
