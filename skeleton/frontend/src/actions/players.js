@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_PLAYERS, DELETE_PLAYER, ADD_PLAYER } from "./types";
+import { GET_PLAYERS, DELETE_PLAYER, ADD_PLAYER, GET_ERRORS } from "./types";
 
 export const getPlayers = () => dispatch => {
   axios
@@ -10,7 +10,15 @@ export const getPlayers = () => dispatch => {
         players: response.data
       });
     })
-    .catch(err => console.log(err));
+    .catch(err => {
+      dispatch({
+        type: GET_ERRORS,
+        error: {
+          errorMessage: err.response.data,
+          status: err.response.status
+        }
+      });
+    });
 };
 
 export const deletePlayer = id => dispatch => {
@@ -22,7 +30,15 @@ export const deletePlayer = id => dispatch => {
         id: id
       });
     })
-    .catch(err => console.log(err));
+    .catch(err => {
+      dispatch({
+        type: GET_ERRORS,
+        error: {
+          errorMessage: err.response.data,
+          status: err.response.status
+        }
+      });
+    });
 };
 
 export const addPlayer = player => dispatch => {
@@ -34,5 +50,13 @@ export const addPlayer = player => dispatch => {
         player: response.data
       });
     })
-    .catch(err => console.log(err));
+    .catch(err => {
+      dispatch({
+        type: GET_ERRORS,
+        error: {
+          errorMessage: err.response.data,
+          status: err.response.status
+        }
+      });
+    });
 };
