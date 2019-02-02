@@ -11,6 +11,7 @@ import AlertError from "../utils/AlertError";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import ProtectedRoute from "../common/ProtectedRoute";
+import { loadUser } from "../actions/auth";
 
 //Options for React Alert
 const alertOptions = {
@@ -19,6 +20,9 @@ const alertOptions = {
 };
 
 class App extends React.Component {
+  componentDidMount() {
+    store.dispatch(loadUser());
+  }
   render() {
     return (
       <Provider store={store}>
