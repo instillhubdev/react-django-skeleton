@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { HashRouter as Router, Route, Switch } from "react-router-dom";
 import { Provider as AlertProvider } from "react-alert";
 import AlertTemplate from "react-alert-template-basic";
 import { Provider } from "react-redux";
@@ -7,6 +8,8 @@ import Header from "./pages/Header";
 import Dashboard from "./pages/Dashboard";
 import store from "../store";
 import AlertError from "../utils/AlertError";
+import Register from "./pages/Register";
+import Login from "./pages/Login";
 
 //Options for React Alert
 const alertOptions = {
@@ -19,13 +22,21 @@ class App extends React.Component {
     return (
       <Provider store={store}>
         <AlertProvider template={AlertTemplate} {...alertOptions}>
-          <React.Fragment>
-            <Header />
-            <AlertError />
-            <div className="container">
-              <Dashboard />
-            </div>
-          </React.Fragment>
+          <Router>
+            <React.Fragment>
+              <Header />
+              <br />
+              <br />
+              <AlertError />
+              <div className="container">
+                <Switch>
+                  <Route exact path="/" component={Dashboard} />
+                  <Route exact path="/register" component={Register} />
+                  <Route exactpath="/login" component={Login} />
+                </Switch>
+              </div>
+            </React.Fragment>
+          </Router>
         </AlertProvider>
       </Provider>
     );
