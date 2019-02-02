@@ -1,8 +1,15 @@
-import { LOADING_USER, USER_LOADED, AUTH_ERROR } from "../actions/types";
+import {
+  LOADING_USER,
+  USER_LOADED,
+  AUTH_ERROR,
+  LOGIN_USER,
+  LOGIN_FAILURE,
+  LOGOUT_USER
+} from "../actions/types";
 
 const INITIAL_STATE = {
   token: localStorage.getItem("token"),
-  isAuthenticated: null,
+  isAuthenticated: false,
   isLoading: false,
   user: null
 };
@@ -16,7 +23,7 @@ export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case LOADING_USER:
       return Object.assign({}, state, {
-        isLoading: true
+        isLoading: action.isLoading
       });
     case USER_LOADED:
       return Object.assign({}, state, {
@@ -25,12 +32,21 @@ export default (state = INITIAL_STATE, action) => {
         user: action.user
       });
     case AUTH_ERROR:
+    case LOGIN_FAILURE:
+    case LOGOUT_USER:
       localStorage.removeItem("token");
       return Object.assign({}, state, {
         isLoading: false,
         token: null,
         user: null,
         isAuthenticated: false
+      });
+    case LOGIN_USER:
+      localStorage.setItem("token", action.user.token);
+      return Object.assign({}, state, {
+        user: action.user,
+        isAuthenticated: true,
+        isLoading: false
       });
     default:
       return state;

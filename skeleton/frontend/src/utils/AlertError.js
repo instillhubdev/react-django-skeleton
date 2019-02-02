@@ -21,6 +21,9 @@ class AlertError extends Component {
       if (error.errorMessage.message) {
         alert.error(`Message : ${error.errorMessage.message.join()}`);
       }
+      if (error.errorMessage.non_field_errors) {
+        alert.error(error.errorMessage.non_field_errors.join());
+      }
     }
     if (message !== prevProps.message) {
       if (message.playerDeleted) {

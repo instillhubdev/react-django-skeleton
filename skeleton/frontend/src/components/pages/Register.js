@@ -68,7 +68,7 @@ export default class Register extends Component {
           </label>
           <input
             type="password"
-            id="inputPassword"
+            id="inputPassword2"
             name="cpass"
             className="form-control"
             placeholder="Password"
