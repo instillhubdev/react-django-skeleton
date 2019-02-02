@@ -1,11 +1,14 @@
-from players.models import Player 
+from players.models import Player
 from rest_framework import viewsets, permissions
-from .serializers import PlayerSerializer 
+from .serializers import PlayerSerializer
 
-# Player Viewset 
+# Player Viewset
 class PlayerViewSet(viewsets.ModelViewSet):
-    queryset = Player.objects.all() 
-    permission_classes =  [
-        permissions.AllowAny
-    ]
-    serializer_class = PlayerSerializer 
+    permission_classes = [permissions.IsAuthenticated]
+    serializer_class = PlayerSerializer
+
+    def get_queryset(self):
+        return self.request.user.players.all()
+
+    def perform_create(self, serializer):
+        serializer.save(owner=self.request.user)

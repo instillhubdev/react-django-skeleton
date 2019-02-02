@@ -1,6 +1,6 @@
 import axios from "axios";
 import { GET_PLAYERS, DELETE_PLAYER, ADD_PLAYER, GET_ERRORS } from "./types";
-import { createMessage } from "./messages";
+import { createMessage, getErrors } from "./messages";
 
 export const getPlayers = () => dispatch => {
   axios
@@ -12,13 +12,7 @@ export const getPlayers = () => dispatch => {
       });
     })
     .catch(err => {
-      dispatch({
-        type: GET_ERRORS,
-        error: {
-          errorMessage: err.response.data,
-          status: err.response.status
-        }
-      });
+      dispatch(getErrors(err.response.data, err.response.status));
     });
 };
 
@@ -26,20 +20,14 @@ export const deletePlayer = id => dispatch => {
   axios
     .delete(`/api/players/${id}`)
     .then(response => {
-      dispatch(createMessage({playerDeleted : 'Player got deleted'}));
+      dispatch(createMessage({ playerDeleted: "Player got deleted" }));
       dispatch({
         type: DELETE_PLAYER,
         id: id
       });
     })
     .catch(err => {
-      dispatch({
-        type: GET_ERRORS,
-        error: {
-          errorMessage: err.response.data,
-          status: err.response.status
-        }
-      });
+      dispatch(getErrors(err.response.data,err.response.status));
     });
 };
 
@@ -47,19 +35,13 @@ export const addPlayer = player => dispatch => {
   axios
     .post("/api/players/", player)
     .then(response => {
-      dispatch(createMessage({playerAdded : 'New player got added.'}))
+      dispatch(createMessage({ playerAdded: "New player got added." }));
       dispatch({
         type: ADD_PLAYER,
         player: response.data
       });
     })
     .catch(err => {
-      dispatch({
-        type: GET_ERRORS,
-        error: {
-          errorMessage: err.response.data,
-          status: err.response.status
-        }
-      });
+      dispatch(getErrors(err.response.data,err.response.status));
     });
 };
