@@ -1,5 +1,6 @@
 import axios from "axios";
 import { GET_PLAYERS, DELETE_PLAYER, ADD_PLAYER, GET_ERRORS } from "./types";
+import { createMessage } from "./messages";
 
 export const getPlayers = () => dispatch => {
   axios
@@ -25,6 +26,7 @@ export const deletePlayer = id => dispatch => {
   axios
     .delete(`/api/players/${id}`)
     .then(response => {
+      dispatch(createMessage({playerDeleted : 'Player got deleted'}));
       dispatch({
         type: DELETE_PLAYER,
         id: id
@@ -45,6 +47,7 @@ export const addPlayer = player => dispatch => {
   axios
     .post("/api/players/", player)
     .then(response => {
+      dispatch(createMessage({playerAdded : 'New player got added.'}))
       dispatch({
         type: ADD_PLAYER,
         player: response.data
